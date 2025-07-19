@@ -1,6 +1,4 @@
-using CleanArch.Results;
-
-namespace CleanArch.Messaging.Behaviors;
+namespace CleanArch;
 
 public static class LoggingBehavior
 {

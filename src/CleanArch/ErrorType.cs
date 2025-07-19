@@ -1,4 +1,4 @@
-namespace CleanArch.Results;
+namespace CleanArch;
 
 public enum ErrorType
 {

@@ -1,10 +1,8 @@
 # CleanArch
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/gasbrieo/dotnet-cleanarch)
-![Build](https://img.shields.io/github/actions/workflow/status/gasbrieo/dotnet-cleanarch/release.yml?branch=main)
 ![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/gasbrieo_dotnet-cleanarch?server=https%3A%2F%2Fsonarcloud.io)
 ![Sonar Coverage](https://img.shields.io/sonar/coverage/gasbrieo_dotnet-cleanarch?server=https%3A%2F%2Fsonarcloud.io)
-![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)
 ![NuGet](https://img.shields.io/nuget/v/Gasbrieo.CleanArch)
 
 A lightweight **.NET library** providing **Clean Architecture building blocks** like a **Result pattern** and **CQRS abstractions**.
@@ -73,24 +71,26 @@ public class CreateUserHandler : ICommandHandler<CreateUserCommand>
 
 ## 🧱 Error Types & Usage
 
-The library provides a small set of **error categories** to model different failure scenarios consistently:
+The library defines a **small, explicit set of error categories** to represent failures consistently across **domain**, **application**, and **infrastructure** layers.
 
-- **Business** → a business rule was violated or the requested action is not allowed in the current domain state  
-  _Example:_ trying to cancel an already shipped order.
+Each `ErrorType` communicates **why** an operation failed, without coupling to any specific presentation layer (like HTTP).
 
-- **Validation** → input data is invalid or inconsistent  
-  _Example:_ email with invalid format, missing required fields.
+---
 
-- **Conflict** → the requested action is valid but cannot proceed due to a conflicting state  
-  _Example:_ trying to register a user with an email that already exists.
+- **Validation** → the request is invalid because **input data is incorrect, missing, or inconsistent**  
+  _Example:_ email format is invalid, required fields are missing, or a domain validation rule is violated.
 
-- **NotFound** → the requested resource or entity does not exist  
-  _Example:_ fetching a user by an ID that does not exist.
+- **Problem** → a **known application or infrastructure issue** prevented the operation from completing, but it’s **not caused by the client’s input**  
+  _Example:_ database timeout, external service unavailable, infrastructure failure.
 
-- **Problem** → an unexpected or internal failure occurred, such as infrastructure errors  
-  _Example:_ database timeout, external service unavailable.
+- **NotFound** → the requested resource or entity **does not exist** or is **unavailable**  
+  _Example:_ fetching a user by an ID that does not exist, looking up a deleted record.
 
-This categorization makes it easy to consistently handle errors across **application**, **domain**, and **infrastructure layers**, and later map them to any presentation layer (APIs, messaging, etc.) without ambiguity.
+- **Conflict** → the operation is valid but **cannot proceed due to a conflicting state**  
+  _Example:_ trying to register a user with an email that already exists, attempting to update an entity modified concurrently.
+
+- **Failure** → a **generic, unexpected error** that does not fit into any other category  
+  _Example:_ unhandled exception, unknown error.
 
 ---
 
@@ -109,18 +109,6 @@ Every merge into `main` automatically:
 - Publishes a new version to NuGet
 
 See all changes in the [CHANGELOG.md](./CHANGELOG.md).
-
----
-
-## 🧱 Project Structure
-
-```
-src/
-├── Messaging/             # ICommandHandler, IQueryHandler
-├── Messaging/Behaviors    # LoggingBehaviors, ValidationBehaviors
-├── Results/               # Result<T>, Error, ErrorType
-└── CleanArch.csproj
-```
 
 ---
 
