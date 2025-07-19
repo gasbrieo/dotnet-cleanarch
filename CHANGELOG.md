@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/gasbrieo/dotnet-cleanarch/compare/v1.1.1...v1.2.0) (2025-07-19)
+
+
+### Features
+
+* add logging and validation behavior ([#6](https://github.com/gasbrieo/dotnet-cleanarch/issues/6)) ([8f6d0c0](https://github.com/gasbrieo/dotnet-cleanarch/commit/8f6d0c026550b7d406938fab3fc3365ae18087a2))
+
 ## [1.1.1](https://github.com/gasbrieo/dotnet-cleanarch/compare/v1.1.0...v1.1.1) (2025-07-19)
 
 
