@@ -39,8 +39,8 @@ jobs:
       - name: Run SonarCloud Scan
         run: |
           dotnet sonarscanner begin \
-            /k:"gasbrieo_dotnet-arch" \
-            /n:"dotnet-arch" \
+            /k:"gasbrieo_dotnet-cleanarch" \
+            /n:"dotnet-cleanarch" \
             /o:"gasbrieo" \
             /d:sonar.host.url="https://sonarcloud.io" \
             /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \

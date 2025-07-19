@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package info">
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Gasbrieo.CleanArch</PackageId>
     <PackageDescription>Clean Architecture building blocks: Result pattern, CQRS abstractions, and error modeling</PackageDescription>
     <PackageTags>clean-architecture;result;cqrs;ddd</PackageTags>
