@@ -41,8 +41,16 @@ jobs:
       - name: Determine next version
         id: next_version
         run: |
-          VERSION=$(semantic-release --dry-run | grep -oP '(?<=The next release version is ).*' | head -1)
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          VERSION=$(semantic-release --dry-run | grep -oP '(?<=The next release version is ).*' | head -1 || echo "")
+          if [ -z "$VERSION" ]; then
+            echo "Nenhuma nova versão detectada. Abortando pipeline."
+            exit 1
+          else
+            echo "Próxima versão: $VERSION"
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run semantic-release
         run: semantic-release
