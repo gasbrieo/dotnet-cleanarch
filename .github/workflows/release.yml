@@ -27,20 +27,33 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: "9.0.x"
 
-      - name: Install semantic-release and plugins
+      - name: Install semantic-release
         run: |
           npm install -g semantic-release \
             @semantic-release/changelog \
             @semantic-release/git \
             @semantic-release/github \
             @semantic-release/commit-analyzer \
-            @semantic-release/release-notes-generator \
-            semantic-release-nuget
+            @semantic-release/release-notes-generator
+
+      - name: Determine next version
+        id: next_version
+        run: |
+          VERSION=$(semantic-release --dry-run | grep -oP '(?<=The next release version is ).*' | head -1)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Run semantic-release
         run: semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+
+      - name: Run Build
+        run: dotnet build --configuration Release
+
+      - name: Pack NuGet
+        run: dotnet pack --configuration Release --no-build --no-restore --output ./nupkgs /p:Version=${{ steps.next_version.outputs.version }}
+
+      - name: Push package to NuGet
+        run: dotnet nuget push ./nupkgs/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
