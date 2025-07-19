@@ -1,4 +1,4 @@
-namespace CleanArch.Messaging;
+namespace CleanArch;
 
 public interface ICommand;
 

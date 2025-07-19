@@ -1,3 +1,3 @@
-namespace CleanArch.Messaging;
+namespace CleanArch;
 
 public interface IQuery<out TResponse>;

@@ -1,6 +1,4 @@
-using CleanArch.Results;
-
-namespace CleanArch.Messaging;
+namespace CleanArch;
 
 public interface ICommandHandler<in TCommand> where TCommand : ICommand
 {

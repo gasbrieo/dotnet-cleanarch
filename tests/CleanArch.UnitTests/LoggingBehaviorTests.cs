@@ -1,8 +1,4 @@
-using CleanArch.Messaging;
-using CleanArch.Messaging.Behaviors;
-using CleanArch.Results;
-
-namespace CleanArch.UnitTests.Messaging.Behaviors;
+namespace CleanArch.UnitTests;
 
 public class LoggingBehaviorCommandHandlerTests
 {

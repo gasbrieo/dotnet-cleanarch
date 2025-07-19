@@ -1,4 +1,4 @@
-namespace CleanArch.Results;
+namespace CleanArch;
 
 public class Result<TValue>(TValue? value, bool isSuccess, Error error) : Result(isSuccess, error)
 {

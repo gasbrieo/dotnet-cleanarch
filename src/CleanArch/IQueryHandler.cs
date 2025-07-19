@@ -1,6 +1,4 @@
-using CleanArch.Results;
-
-namespace CleanArch.Messaging;
+namespace CleanArch;
 
 public interface IQueryHandler<in TQuery, TResponse> where TQuery : IQuery<TResponse>
 {

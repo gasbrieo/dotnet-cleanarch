@@ -1,6 +1,4 @@
-using CleanArch.Results;
-
-namespace CleanArch.UnitTests.Results;
+namespace CleanArch.UnitTests;
 
 public class ResultTests
 {
