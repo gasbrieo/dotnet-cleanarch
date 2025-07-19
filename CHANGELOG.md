@@ -1,7 +1,6 @@
 # Changelog
 
 
-
 # [1.0.0](https://github.com/gasbrieo/dotnet-cleanarch/commits/v1.0.0) (2025-07-18)
 
 

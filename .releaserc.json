@@ -1,0 +1,34 @@
+{
+  "branches": ["main"],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "CHANGELOG.md"
+      }
+    ],
+    [
+      "semantic-release-nuget",
+      {
+        "projectFile": "src/CleanArch/CleanArch.csproj",
+        "packageSource": "https://api.nuget.org/v3/index.json",
+        "apiKeyEnvironmentVariable": "NUGET_API_KEY"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "assets": ["src/CleanArch/bin/Release/*.nupkg"]
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": ["CHANGELOG.md"],
+        "message": "chore: release ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ]
+  ]
+}

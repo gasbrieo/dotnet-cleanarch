@@ -13,11 +13,11 @@ A lightweight **.NET library** providing **Clean Architecture building blocks** 
 
 ## ✨ Features
 
-- ✅ **Result Pattern** for explicit success/failure handling  
-- ✅ **Standardized Error Types** (`Failure`, `Validation`, `NotFound`, `Conflict`)  
-- ✅ **CQRS Abstractions** (`ICommandHandler`, `IQueryHandler`)  
-- ✅ **Clean, dependency-free implementation**  
-- ✅ **Multi-target** (`netstandard2.1` + `net8.0`)  
+- ✅ **Result Pattern** for explicit success/failure handling
+- ✅ **Standardized Error Types** (`Failure`, `Validation`, `NotFound`, `Conflict`)
+- ✅ **CQRS Abstractions** (`ICommandHandler`, `IQueryHandler`)
+- ✅ **Clean, dependency-free implementation**
+- ✅ **Multi-target** (`netstandard2.1` + `net8.0`)
 
 ---
 
@@ -78,19 +78,19 @@ public class CreateUserHandler : ICommandHandler<CreateUserCommand>
 The library provides a small set of **error categories** to model different failure scenarios consistently:
 
 - **Business** → a business rule was violated or the requested action is not allowed in the current domain state  
-  _Example:_ trying to cancel an already shipped order.  
+  _Example:_ trying to cancel an already shipped order.
 
 - **Validation** → input data is invalid or inconsistent  
-  _Example:_ email with invalid format, missing required fields.  
+  _Example:_ email with invalid format, missing required fields.
 
 - **Conflict** → the requested action is valid but cannot proceed due to a conflicting state  
-  _Example:_ trying to register a user with an email that already exists.  
+  _Example:_ trying to register a user with an email that already exists.
 
 - **NotFound** → the requested resource or entity does not exist  
-  _Example:_ fetching a user by an ID that does not exist.  
+  _Example:_ fetching a user by an ID that does not exist.
 
 - **Problem** → an unexpected or internal failure occurred, such as infrastructure errors  
-  _Example:_ database timeout, external service unavailable.  
+  _Example:_ database timeout, external service unavailable.
 
 This categorization makes it easy to consistently handle errors across **application**, **domain**, and **infrastructure layers**, and later map them to any presentation layer (APIs, messaging, etc.) without ambiguity.
 
@@ -100,15 +100,15 @@ This categorization makes it easy to consistently handle errors across **applica
 
 This project uses **[semantic-release](https://semantic-release.gitbook.io/semantic-release/)** for fully automated versioning:
 
-- **feat:** → minor version bump (0.x.0 → 0.(x+1).0)  
-- **fix:** → patch version bump (0.0.x → 0.0.(x+1))  
-- **feat!: / BREAKING CHANGE:** → major version bump (x.0.0 → (x+1).0.0)  
+- **feat:** → minor version bump (0.x.0 → 0.(x+1).0)
+- **fix:** → patch version bump (0.0.x → 0.0.(x+1))
+- **feat!: / BREAKING CHANGE:** → major version bump (x.0.0 → (x+1).0.0)
 
-Every merge into `main` automatically:  
+Every merge into `main` automatically:
 
-- Updates `CHANGELOG.md`  
-- Creates a GitHub release  
-- Publishes a new version to NuGet  
+- Updates `CHANGELOG.md`
+- Creates a GitHub release
+- Publishes a new version to NuGet
 
 See all changes in the [CHANGELOG.md](./CHANGELOG.md).
 
