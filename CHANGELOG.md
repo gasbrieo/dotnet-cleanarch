@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/gasbrieo/dotnet-cleanarch/compare/v1.1.0...v1.1.1) (2025-07-19)
+
+
+### Bug Fixes
+
+* fix semantic release versioning ([#4](https://github.com/gasbrieo/dotnet-cleanarch/issues/4)) ([4b4953a](https://github.com/gasbrieo/dotnet-cleanarch/commit/4b4953aadaed31c94d1752c858d68e0b6c4c5db3))
+
 # [1.1.0](https://github.com/gasbrieo/dotnet-cleanarch/compare/v1.0.0...v1.1.0) (2025-07-19)
 
 
