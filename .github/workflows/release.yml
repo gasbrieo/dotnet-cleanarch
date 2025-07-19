@@ -44,7 +44,7 @@ jobs:
           VERSION=$(semantic-release --dry-run | grep -oP '(?<=The next release version is ).*' | head -1 || echo "")
           if [ -z "$VERSION" ]; then
             echo "No relevant changes, skipping release."
-            exit 0
+            exit 78
           else
             echo "version=$VERSION" >> $GITHUB_OUTPUT
           fi
