@@ -43,10 +43,9 @@ jobs:
         run: |
           VERSION=$(semantic-release --dry-run | grep -oP '(?<=The next release version is ).*' | head -1 || echo "")
           if [ -z "$VERSION" ]; then
-            echo "Nenhuma nova versão detectada. Abortando pipeline."
-            exit 1
+            echo "No relevant changes, skipping release."
+            exit 0
           else
-            echo "Próxima versão: $VERSION"
             echo "version=$VERSION" >> $GITHUB_OUTPUT
           fi
         env:
