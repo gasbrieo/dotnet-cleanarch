@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/gasbrieo/dotnet-cleanarch/compare/v1.2.0...v1.2.1) (2025-07-19)
+
+
+### Bug Fixes
+
+* change project structure ([#8](https://github.com/gasbrieo/dotnet-cleanarch/issues/8)) ([44b2d52](https://github.com/gasbrieo/dotnet-cleanarch/commit/44b2d5251a243506a3a5e00f37932b2f3747dcb2))
+
 # [1.2.0](https://github.com/gasbrieo/dotnet-cleanarch/compare/v1.1.1...v1.2.0) (2025-07-19)
 
 
