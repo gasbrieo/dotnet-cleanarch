@@ -16,8 +16,8 @@ A lightweight **.NET library** providing **Clean Architecture building blocks** 
 - ✅ **Result Pattern** for explicit success/failure handling
 - ✅ **Standardized Error Types** (`Failure`, `Validation`, `NotFound`, `Conflict`)
 - ✅ **CQRS Abstractions** (`ICommandHandler`, `IQueryHandler`)
+- ✅ **CQRS Behaviors** (`LoggingBehavior`, `ValidationBehavior`)
 - ✅ **Clean, dependency-free implementation**
-- ✅ **Multi-target** (`netstandard2.1` + `net8.0`)
 
 ---
 
@@ -25,7 +25,7 @@ A lightweight **.NET library** providing **Clean Architecture building blocks** 
 
 | Layer   | Stack                             |
 | ------- | --------------------------------- |
-| Runtime | .NET 8 + .NET Std                 |
+| Runtime | .NET 9                            |
 | Package | NuGet                             |
 | CI/CD   | GitHub Actions + semantic-release |
 
@@ -44,8 +44,6 @@ dotnet add package Gasbrieo.CleanArch
 **Results**
 
 ```csharp
-using Gasbrieo.CleanArch.Results;
-
 Result<string> user = Result<string>.Success("John Doe");
 
 if (user.IsSuccess)
@@ -118,8 +116,9 @@ See all changes in the [CHANGELOG.md](./CHANGELOG.md).
 
 ```
 src/
-├── CQRS/         # ICommandHandler, IQueryHandler
-├── Results/      # Result<T>, Error, ErrorType
+├── Messaging/             # ICommandHandler, IQueryHandler
+├── Messaging/Behaviors    # LoggingBehaviors, ValidationBehaviors
+├── Results/               # Result<T>, Error, ErrorType
 └── CleanArch.csproj
 ```
 
