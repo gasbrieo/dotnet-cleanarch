@@ -5,7 +5,7 @@ public class ValidationBehaviorCommandHandlerTests
     public record TestCommand(string Value) : ICommand<string>;
 
     [Fact]
-    public async Task HandleAsync_WhenNoValidators_ShouldCallInnerHandler()
+    public async Task HandleAsync_WhenNoValidators_ThenCallsInnerHandler()
     {
         // Arrange
         var mockInnerHandler = new Mock<ICommandHandler<TestCommand, string>>();
@@ -30,7 +30,7 @@ public class ValidationBehaviorCommandHandlerTests
     }
 
     [Fact]
-    public async Task HandleAsync_WhenValidationPasses_ShouldCallInnerHandler()
+    public async Task HandleAsync_WhenValidationPasses_ThenCallsInnerHandler()
     {
         // Arrange
         var mockValidator = new Mock<IValidator<TestCommand>>();
@@ -60,7 +60,7 @@ public class ValidationBehaviorCommandHandlerTests
     }
 
     [Fact]
-    public async Task HandleAsync_WhenValidationFails_ShouldReturnFailureAndSkipInnerHandler()
+    public async Task HandleAsync_WhenValidationFails_ThenReturnsFailureAndSkipInnerHandler()
     {
         // Arrange
         var failures = new[]
@@ -104,7 +104,7 @@ public class ValidationBehaviorCommandBaseHandlerTests
     public record TestCommand() : ICommand;
 
     [Fact]
-    public async Task HandleAsync_WhenNoValidators_ShouldCallInnerHandler()
+    public async Task HandleAsync_WhenNoValidators_ThenCallsInnerHandler()
     {
         var mockInnerHandler = new Mock<ICommandHandler<TestCommand>>();
         mockInnerHandler
@@ -124,7 +124,7 @@ public class ValidationBehaviorCommandBaseHandlerTests
     }
 
     [Fact]
-    public async Task HandleAsync_WhenValidationFails_ShouldReturnFailureAndSkipInnerHandler()
+    public async Task HandleAsync_WhenValidationFails_ThenReturnsFailureAndSkipInnerHandler()
     {
         var failures = new[]
         {
@@ -163,7 +163,7 @@ public class ValidationBehaviorQueryHandlerTests
     public record TestQuery(string Query) : IQuery<int>;
 
     [Fact]
-    public async Task HandleAsync_WhenValidationPasses_ShouldCallInnerHandler()
+    public async Task HandleAsync_WhenValidationPasses_ThenCallsInnerHandler()
     {
         var mockValidator = new Mock<IValidator<TestQuery>>();
         mockValidator
@@ -189,7 +189,7 @@ public class ValidationBehaviorQueryHandlerTests
     }
 
     [Fact]
-    public async Task HandleAsync_WhenValidationFails_ShouldReturnFailureAndSkipInnerHandler()
+    public async Task HandleAsync_WhenValidationFails_ThenReturnsFailureAndSkipInnerHandler()
     {
         var failures = new[]
         {

@@ -5,7 +5,7 @@ public class LoggingBehaviorCommandHandlerTests
     public record TestCommand(string Value) : ICommand<string>;
 
     [Fact]
-    public async Task HandleAsync_WhenSuccess_ShouldLogStartAndCompletion()
+    public async Task HandleAsync_WhenSuccess_ThenLogsStartAndCompletion()
     {
         // Arrange
         var mockInnerHandler = new Mock<ICommandHandler<TestCommand, string>>();
@@ -33,7 +33,7 @@ public class LoggingBehaviorCommandHandlerTests
     }
 
     [Fact]
-    public async Task HandleAsync_WhenFailure_ShouldLogStartAndError()
+    public async Task HandleAsync_WhenFailure_ThenLogsStartAndError()
     {
         // Arrange
         var error = Error.Failure("TestError", "Something failed");
@@ -68,7 +68,7 @@ public class LoggingBehaviorCommandBaseHandlerTests
     public record TestCommand() : ICommand;
 
     [Fact]
-    public async Task HandleAsync_WhenSuccess_ShouldLogStartAndCompletion()
+    public async Task HandleAsync_WhenSuccess_ThenLogsStartAndCompletion()
     {
         // Arrange
         var mockInnerHandler = new Mock<ICommandHandler<TestCommand>>();
@@ -95,7 +95,7 @@ public class LoggingBehaviorCommandBaseHandlerTests
     }
 
     [Fact]
-    public async Task HandleAsync_WhenFailure_ShouldLogError()
+    public async Task HandleAsync_WhenFailure_ThenLogsError()
     {
         // Arrange
         var error = Error.Failure("Err", "Failed");
@@ -128,7 +128,7 @@ public class LoggingBehaviorQueryHandlerTests
     public record TestQuery(string Query) : IQuery<int>;
 
     [Fact]
-    public async Task HandleAsync_WhenSuccess_ShouldLogStartAndCompletion()
+    public async Task HandleAsync_WhenSuccess_ThenLogsStartAndCompletion()
     {
         // Arrange
         var mockInnerHandler = new Mock<IQueryHandler<TestQuery, int>>();
@@ -154,7 +154,7 @@ public class LoggingBehaviorQueryHandlerTests
     }
 
     [Fact]
-    public async Task HandleAsync_WhenFailure_ShouldLogError()
+    public async Task HandleAsync_WhenFailure_ThenLogsError()
     {
         // Arrange
         var error = Error.Failure("Err", "Query failed");
