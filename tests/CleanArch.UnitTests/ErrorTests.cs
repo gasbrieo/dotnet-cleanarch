@@ -63,7 +63,7 @@ public class ErrorTests
     }
 
     [Fact]
-    public void None_ShouldHaveEmptyValues()
+    public void Instiate_None()
     {
         // Act
         var error = Error.None;
@@ -75,7 +75,7 @@ public class ErrorTests
     }
 
     [Fact]
-    public void NullValue_ShouldHaveGeneralCode()
+    public void Instantiate_NullValue()
     {
         // Act
         var error = Error.NullValue;
