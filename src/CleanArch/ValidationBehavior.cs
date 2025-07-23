@@ -81,5 +81,5 @@ public static class ValidationBehavior
     }
 
     private static ErrorList CreateValidationError(ValidationFailure[] validationFailures) =>
-        new("Validation.General", [.. validationFailures.Select(f => Error.Problem(f.ErrorCode, f.ErrorMessage))]);
+        new("ValidationBehavior", [.. validationFailures.Select(f => Error.Validation(f.PropertyName, f.ErrorMessage))]);
 }
