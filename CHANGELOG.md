@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/gasbrieo/dotnet-cleanarch/compare/v1.2.1...v1.3.0) (2025-07-23)
+
+
+### Features
+
+* change validation to be prop name and error message ([#10](https://github.com/gasbrieo/dotnet-cleanarch/issues/10)) ([25afd27](https://github.com/gasbrieo/dotnet-cleanarch/commit/25afd273c3bffc5e0d85263709975eb1ecf58834))
+
 ## [1.2.1](https://github.com/gasbrieo/dotnet-cleanarch/compare/v1.2.0...v1.2.1) (2025-07-19)
 
 
