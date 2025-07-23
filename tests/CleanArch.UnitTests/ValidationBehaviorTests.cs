@@ -91,7 +91,7 @@ public class ValidationBehaviorCommandHandlerTests
         Assert.IsType<ErrorList>(result.Error);
 
         var errorList = (ErrorList)result.Error;
-        Assert.Equal("Validation.General", errorList.Code);
+        Assert.Equal("ValidationBehavior", errorList.Code);
         Assert.Equal(ErrorType.Validation, errorList.Type);
         Assert.Equal(2, errorList.Errors.Length);
 
@@ -150,7 +150,7 @@ public class ValidationBehaviorCommandBaseHandlerTests
         Assert.IsType<ErrorList>(result.Error);
 
         var errorList = (ErrorList)result.Error;
-        Assert.Equal("Validation.General", errorList.Code);
+        Assert.Equal("ValidationBehavior", errorList.Code);
         Assert.Single(errorList.Errors);
 
         mockInnerHandler.Verify(h => h.HandleAsync(It.IsAny<TestCommand>(), It.IsAny<CancellationToken>()), Times.Never);
@@ -215,7 +215,7 @@ public class ValidationBehaviorQueryHandlerTests
         Assert.IsType<ErrorList>(result.Error);
 
         var errorList = (ErrorList)result.Error;
-        Assert.Equal("Validation.General", errorList.Code);
+        Assert.Equal("ValidationBehavior", errorList.Code);
         Assert.Single(errorList.Errors);
 
         mockInnerHandler.Verify(h => h.HandleAsync(It.IsAny<TestQuery>(), It.IsAny<CancellationToken>()), Times.Never);

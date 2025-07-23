@@ -15,15 +15,15 @@ public class ErrorTests
     }
 
     [Fact]
-    public void NotFound_WhenCalled_ThenCreatesNotFoundError()
+    public void Validation_WhenCalled_ThenCreatesValidationError()
     {
         // Act
-        var error = Error.NotFound("NotFoundCode", "Not found");
+        var error = Error.Validation("ValidationCode", "A validation error occurred");
 
         // Assert
-        Assert.Equal("NotFoundCode", error.Code);
-        Assert.Equal("Not found", error.Description);
-        Assert.Equal(ErrorType.NotFound, error.Type);
+        Assert.Equal("ValidationCode", error.Code);
+        Assert.Equal("A validation error occurred", error.Description);
+        Assert.Equal(ErrorType.Validation, error.Type);
     }
 
     [Fact]
@@ -36,6 +36,18 @@ public class ErrorTests
         Assert.Equal("ProblemCode", error.Code);
         Assert.Equal("A problem occurred", error.Description);
         Assert.Equal(ErrorType.Problem, error.Type);
+    }
+
+    [Fact]
+    public void NotFound_WhenCalled_ThenCreatesNotFoundError()
+    {
+        // Act
+        var error = Error.NotFound("NotFoundCode", "Not found");
+
+        // Assert
+        Assert.Equal("NotFoundCode", error.Code);
+        Assert.Equal("Not found", error.Description);
+        Assert.Equal(ErrorType.NotFound, error.Type);
     }
 
     [Fact]

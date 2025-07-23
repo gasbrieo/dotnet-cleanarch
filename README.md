@@ -73,24 +73,35 @@ public class CreateUserHandler : ICommandHandler<CreateUserCommand>
 
 The library defines a **small, explicit set of error categories** to represent failures consistently across **domain**, **application**, and **infrastructure** layers.
 
-Each `ErrorType` communicates **why** an operation failed, without coupling to any specific presentation layer (like HTTP).
+Each `ErrorType` communicates **why** an operation failed, without assuming how it will be presented (HTTP, gRPC, messaging, etc.).
 
 ---
 
-- **Validation** → the request is invalid because **input data is incorrect, missing, or inconsistent**  
-  _Example:_ email format is invalid, required fields are missing, or a domain validation rule is violated.
+- **Validation** → the request contains **invalid or missing fields**, or violates a **domain validation rule**.  
+  This category is intended for **multiple field-level errors** returned together.  
+  _Example:_ email format is invalid, required fields are missing, or a business invariant is broken.
 
-- **Problem** → a **known application or infrastructure issue** prevented the operation from completing, but it’s **not caused by the client’s input**  
-  _Example:_ database timeout, external service unavailable, infrastructure failure.
+- **Problem** → a **known business rule** prevents the operation from succeeding, but it’s **not caused by invalid input**.  
+  This category is intended for a **single, well-defined business error**.  
+  _Example:_ attempting to deactivate the only remaining admin account, trying to process an order in a disallowed state.
 
-- **NotFound** → the requested resource or entity **does not exist** or is **unavailable**  
+- **NotFound** → the requested resource or entity **does not exist** or is **no longer available**.  
   _Example:_ fetching a user by an ID that does not exist, looking up a deleted record.
 
-- **Conflict** → the operation is valid but **cannot proceed due to a conflicting state**  
+- **Conflict** → the operation is valid but **cannot proceed due to a conflicting state**.  
   _Example:_ trying to register a user with an email that already exists, attempting to update an entity modified concurrently.
 
-- **Failure** → a **generic, unexpected error** that does not fit into any other category  
-  _Example:_ unhandled exception, unknown error.
+- **Failure** → a **generic, unexpected error** that does not fit into any other category.  
+  _Example:_ unhandled exception, infrastructure failure, or unknown error.
+
+---
+
+**Design intention:**  
+
+- Use **Validation** when you need to return **multiple field errors at once**.  
+- Use **Problem** when you need to return **a single business rule violation**.  
+
+These error types are **transport-agnostic** – they describe the **reason for failure** without coupling to how the error will be returned in a specific protocol (e.g., HTTP or gRPC).
 
 ---
 
